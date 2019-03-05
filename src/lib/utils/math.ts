@@ -1,4 +1,4 @@
-import { GridPos } from '../grid';
+import { Coordinates } from './vector';
 import { promisify as _p } from 'util';
 import crypto from 'crypto';
 
@@ -18,7 +18,7 @@ export function clamp(val: number, max: number = 1, min: number = 0): number {
     return val > max ? max : val < min ? min : val;
 }
 
-export async function getRandomPointInCircle(radius: number, tile: number = 4): Promise<GridPos> {
+export async function getRandomPointInCircle(radius: number, tile: number = 4): Promise<Coordinates> {
     let t = 2 * Math.PI * (await srand());
     let u = (await srand())+(await srand());
     let r: number = 0;
@@ -26,5 +26,5 @@ export async function getRandomPointInCircle(radius: number, tile: number = 4): 
     else r = u;
     let x = roundm(radius*r*Math.cos(t), tile);
     let y = roundm(radius*r*Math.sin(t), tile);
-    return {x, y, z: -1};
+    return {x, y};
 }

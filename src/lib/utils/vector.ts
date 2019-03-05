@@ -14,3 +14,6 @@ export function from_1d(i: number, width: number): Coordinates {
         y: Math.floor(i / width)
     };
 }
+export function manhattanDistance(pos: Coordinates, dest: Coordinates): number {
+    return Math.abs(pos.x - dest.x) + Math.abs(pos.y - dest.y);
+}
