@@ -9,11 +9,10 @@ import { promisify as _p } from "util";
 const writeFile = _p(fs.writeFile);
 
 declare interface IArgs {
-    width?: number;
-    length?: number;
-    file?: string;
-    iterations?: number;
-    offset?: number;
+    width: number;
+    length: number;
+    file: string;
+    iterations: number;
 }
 
 const parser = new ArgumentParser({
@@ -37,20 +36,12 @@ parser.addArgument(["-l", "--length"], {
     help: "Height of cell map (Y axis). Default: 25",
 });
 
-parser.addArgument(["-o", "--offset"], {
-    help: "Whether or not to offset the coordinates by half of the width and height.",
-    defaultValue: false,
-    type: Boolean,
-    nargs: 0,
-});
-
 const args: IArgs = parser.parseArgs();
 
-if (args.file === null) { args.file = undefined; }
+if (args.file === null) { args.file = ""; }
 if (args.length === null) { args.length = 25; }
 if (args.width === null) { args.width = 25; }
 if (args.iterations === null) { args.iterations = 15; }
-if (args.offset === null) { args.offset = 0; } else { args.offset = args.width ? (args.width - 1) / 2 : 0; }
 
 (async () => {
     console.log("Creating cell map...");
@@ -63,9 +54,9 @@ if (args.offset === null) { args.offset = 0; } else { args.offset = args.width ?
     console.log("Simulating...");
     cells.simulate(args.iterations);
     console.log("Converting room data to yaml...");
-    const rooms = cells.export().map((room) => room.toYaml(args.offset, args.offset)).join("\n\n");
+    const rooms = cells.export().map((room) => room.toYaml((args.width - 1) / 2, (args.length - 1) / 2)).join("\n\n");
     console.log("Done.");
-    if (args.file !== undefined) {
+    if (args.file !== "") {
         // File flag exists.
         let filePath = args.file;
         if (!path.isAbsolute(filePath)) { filePath = path.join(process.cwd(), filePath); }

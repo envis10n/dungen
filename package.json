@@ -1,6 +1,6 @@
 {
   "name": "dungen-ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Procedural generation utility.",
   "main": "dist/main.js",
   "bin": {
@@ -17,8 +17,7 @@
   "license": "MIT",
   "devDependencies": {
     "nodemon": "^1.18.10",
-    "ts-node": "^8.0.2",
-    "typescript": "^3.3.3333"
+    "ts-node": "^8.0.2"
   },
   "dependencies": {
     "@types/argparse": "^1.0.36",
@@ -26,6 +25,7 @@
     "@types/uuid": "^3.4.4",
     "argparse": "^1.0.10",
     "tslint": "^5.13.1",
+    "typescript": "^3.3.3333",
     "uuid": "^3.3.2"
   }
 }
