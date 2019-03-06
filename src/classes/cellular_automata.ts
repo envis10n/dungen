@@ -1,7 +1,8 @@
-/*tslint:disable ordered-imports object-literal-sort-keys*/
+/* tslint:disable ordered-imports object-literal-sort-keys */
 import * as Vector2D from "../lib/utils/vector";
 import * as Maths from "../lib/utils/math";
 import { Cell } from "./cell";
+import { Room, Exit } from "./room";
 
 export interface ICellularAutomataOptions {
     width?: number;
@@ -12,6 +13,11 @@ export interface ICellularAutomataOptions {
     overPop?: number;
     lifetime?: number;
     state?: Cell[];
+}
+
+export interface ICellDirection {
+    cell: Cell;
+    direction: Exit;
 }
 
 export class CellularAutomata {
@@ -75,6 +81,27 @@ export class CellularAutomata {
         if (y - 1 >= 0) { t.push(this.map[Vector2D.to_1d({x, y: y - 1}, this.width)]); }
         return t;
     }
+    public getNeighborsDirection(idx: number): ICellDirection[] {
+        const {x, y} = Vector2D.from_1d(idx, this.width);
+        const t: ICellDirection[] = [];
+        if (x + 1 < this.width) { t.push({
+            cell: this.map[Vector2D.to_1d({x: x + 1, y}, this.width)],
+            direction: "east",
+        }); }
+        if (x - 1 >= 0) { t.push({
+            cell: this.map[Vector2D.to_1d({x: x - 1, y}, this.width)],
+            direction: "west",
+        }); }
+        if (y + 1 < this.height) { t.push({
+            cell: this.map[Vector2D.to_1d({x, y: y + 1}, this.width)],
+            direction: "south",
+        }); }
+        if (y - 1 >= 0) { t.push({
+            cell: this.map[Vector2D.to_1d({x, y: y - 1}, this.width)],
+            direction: "north",
+        }); }
+        return t;
+    }
     public getWalkableNeighbors(idx: number): Cell[] {
         const neighbors: Cell[] = this.getNeighbors(idx);
         return neighbors.filter((cell) => cell.state === false);
@@ -100,5 +127,20 @@ export class CellularAutomata {
             }
             this.map = nMap;
         }
+    }
+    public export(): Room[] {
+        const rooms: Room[] = [];
+        for (let i = 0; i < this.map.length; i++) {
+            const cell = this.map[i];
+            if (cell.state === true) {
+                const nb = this.getNeighborsDirection(i).filter((r) => r.cell.state === true);
+                const room = new Room(cell.pos.x, cell.pos.y);
+                for (const d of nb) {
+                    room.addExit(d.direction);
+                }
+                rooms.push(room);
+            }
+        }
+        return rooms;
     }
 }

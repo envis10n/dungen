@@ -3,15 +3,21 @@
   "version": "0.0.1",
   "description": "Procedural generation utility.",
   "main": "dist/main.js",
+  "bin": {
+    "dungen": "./bin/dungen"
+  },
   "scripts": {
     "start": "tsc && node .",
     "build": "tsc",
-    "watch": "nodemon"
+    "watch": "nodemon",
+    "install": "tsc"
   },
   "author": "envis10n",
+  "repository": "https://github.com/envis10n/dungen.git",
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@types/argparse": "^1.0.36",
     "@types/node": "^11.10.4",
     "@types/uuid": "^3.4.4",
     "nodemon": "^1.18.10",
@@ -19,6 +25,7 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
+    "argparse": "^1.0.10",
     "tslint": "^5.13.1",
     "uuid": "^3.3.2"
   }

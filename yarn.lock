@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@types/argparse@^1.0.36":
+  version "1.0.36"
+  resolved "https://registry.yarnpkg.com/@types/argparse/-/argparse-1.0.36.tgz#9720632ec67f4e48f75c5956107c07f899765842"
+  integrity sha512-3+i1qzPwyNjbJeiZuJQuETdAe7kWsbI+Vrpj8kbdqAEsXaBDxHPEPg6tXGeDEP0DDPrOnvyFJjm6XNOoK6685w==
+
 "@types/node@*", "@types/node@^11.10.4":
   version "11.10.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.10.4.tgz#3f5fc4f0f322805f009e00ab35a2ff3d6b778e42"
@@ -74,7 +79,7 @@ arg@^4.1.0:
   resolved "https://registry.yarnpkg.com/arg/-/arg-4.1.0.tgz#583c518199419e0037abb74062c37f8519e575f0"
   integrity sha512-ZWc51jO3qegGkVh8Hwpv636EkbesNV5ZNQPCtRa+0qytRYPEs9IYT9qITY9buezqUH5uqyzlWLcufrzU2rffdg==
 
-argparse@^1.0.7:
+argparse@^1.0.10, argparse@^1.0.7:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
   integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
