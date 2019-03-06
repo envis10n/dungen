@@ -1,6 +1,6 @@
 {
   "name": "dungen-ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Procedural generation utility.",
   "main": "dist/main.js",
   "bin": {
