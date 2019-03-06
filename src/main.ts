@@ -1,6 +1,5 @@
-import Utils from "./lib/utils";
-
 // Cellular Automata demo.
+
 import { CellularAutomata } from "./classes/cellular_automata";
 
 const cells = new CellularAutomata({width: 60, height: 60, startAlive: 0.5, lifetime: 10});
