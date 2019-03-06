@@ -1,27 +1,47 @@
-import Utils from './lib/utils';
+import Utils from "./lib/utils";
 
 // Cellular Automata demo.
-import { CellularAutomata, Cell } from './classes/cell';
+import { CellularAutomata } from "./classes/cell";
 
-let cells = new CellularAutomata({width: 60, height: 60, startAlive: 0.5, lifetime: 10});
+const cells = new CellularAutomata({width: 60, height: 60, startAlive: 0.5, lifetime: 10});
 (async () => {
     await cells.init();
     cells.simulate(100);
-    let res: string[] = [];
-    for(let y = 0; y < cells.height; y++){
-        let r: string[] = [];
-        for(let x = 0; x < cells.width; x++){
-            let cell = cells.getTile(x, y);
-            if(cell) {
-                if(cell.state === true) {
-                    r.push('##');
-                } else {
-                    r.push('  ');
-                }
+    const res: boolean[][] = [];
+    for (let y = 0; y < cells.height; y++) {
+        const r: boolean[] = [];
+        for (let x = 0; x < cells.width; x++) {
+            const cell = cells.getTile(x, y);
+            if (cell) {
+                r.push(cell.state);
             }
         }
-        res.push(r.join(''));
+        res.push(r);
     }
-
-    console.log(res.join('\n'));
+    const layer2 = new CellularAutomata({width: 60, height: 60, startAlive: 0.4});
+    await layer2.init();
+    layer2.simulate(20);
+    const res2: boolean[][] = [];
+    for (let y = 0; y < layer2.height; y++) {
+        const r: boolean[] = [];
+        for (let x = 0; x < layer2.width; x++) {
+            const cell = layer2.getTile(x, y);
+            if (cell) {
+                r.push(cell.state);
+            }
+        }
+        res2.push(r);
+    }
+    const res3: string[][] = res.map((e) => e.map((r) => r ? "**" : "  "));
+    const fin: string[] = [];
+    for (let i = 0; i < res2.length; i++) {
+        const line = res3[i];
+        for (let ix = 0; ix < line.length; ix++) {
+            if (line[ix] === "  " && res2[i][ix] === true) {
+                line[ix] = "##";
+            }
+        }
+        fin.push(line.join(""));
+    }
+    console.log(fin.join("\n"));
 })();

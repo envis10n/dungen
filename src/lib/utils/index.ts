@@ -1,5 +1,6 @@
-import * as MathM from './math';
-import * as VectorM from './vector';
+/* tslint:disable no-namespace */
+import * as MathM from "./math";
+import * as VectorM from "./vector";
 
 namespace Utils {
     export const Math = MathM;
