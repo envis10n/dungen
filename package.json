@@ -1,5 +1,5 @@
 {
-  "name": "dungen",
+  "name": "dungen-ts",
   "version": "0.0.1",
   "description": "Procedural generation utility.",
   "main": "dist/main.js",
@@ -15,16 +15,15 @@
   "author": "envis10n",
   "repository": "https://github.com/envis10n/dungen.git",
   "license": "MIT",
-  "private": true,
   "devDependencies": {
-    "@types/argparse": "^1.0.36",
-    "@types/node": "^11.10.4",
-    "@types/uuid": "^3.4.4",
     "nodemon": "^1.18.10",
     "ts-node": "^8.0.2",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
+    "@types/argparse": "^1.0.36",
+    "@types/node": "^11.10.5",
+    "@types/uuid": "^3.4.4",
     "argparse": "^1.0.10",
     "tslint": "^5.13.1",
     "uuid": "^3.3.2"
